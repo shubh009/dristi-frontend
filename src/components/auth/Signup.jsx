@@ -141,7 +141,7 @@ export default function Signup() {
 
           {/* Signup Form */}
           <div className="w-full max-w-xl">
-            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-teal-700 to-teal-500 text-transparent bg-clip-text mb-6 text-center">
+            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-teal-700 to-teal-500 text-primary bg-clip-text mb-6 text-center">
               Create Your Account
             </h1>
 
@@ -225,16 +225,16 @@ export default function Signup() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-teal-700 text-white font-semibold py-3 rounded-md hover:bg-teal-600 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70"
+                className="w-full bg-secondary text-black font-semibold py-3 rounded-full hover:bg-yellow-400 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 text-2xl"
               >
-                Sign Up
+                Sign Up Here !!!
               </button>
 
-              <p className="text-sm text-center text-gray-600 mt-4">
+              <p className="text-md text-center text-gray-7800 mt-4">
                 Already have an account?{" "}
                 <a
                   href="/login"
-                  className="text-teal-700 font-medium hover:underline"
+                  className="text-primary font-medium hover:underline"
                 >
                   Login here
                 </a>

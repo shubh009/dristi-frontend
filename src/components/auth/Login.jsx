@@ -122,7 +122,7 @@ export default function Login() {
 
           {/* Login Form */}
           <div className="w-full max-w-xl">
-            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-teal-700 to-teal-500 text-transparent bg-clip-text mb-6 text-center border-b pb-4">
+            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-teal-700 to-teal-500 text-primary bg-clip-text mb-6 text-center border-b pb-4">
               Login Panel
             </h1>
 
@@ -161,9 +161,9 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className=" w-full bg-teal-700 text-white font-semibold py-3 rounded-md text-xl hover:bg-teal-600 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70"
+                className=" w-full bg-secondary text-black font-semibold py-3 rounded-full text-2xl hover:bg-yellow-400 hover:scale-[1.02] transition-all duration-300 disabled:opacity-70"
               >
-                {loading ? "Logging in..." : "Login Now"}
+                {loading ? "Logging in..." : "Login Now !!!"}
               </button>
 
               <p className="text-md text-center text-gray-800 mt-4">
