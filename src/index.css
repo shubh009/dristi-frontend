@@ -1,9 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* make body a normal block-level element (in case something set it to flex) */
+body {
+  display: block;
+  min-height: 100vh;
+  background-color: #f8fafc; /* tailwind gray-50 fallback */
+}
+
+/* force root to take full width (override any injected rules) */
+#root {
+  width: 100% !important;
+  height: 100%;
+  display: block;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Nunito, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

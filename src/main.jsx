@@ -1,12 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import "remixicon/fonts/remixicon.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import "./index.css";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <App />
-    <i className="remixicon-admin-line"></i>
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AuthProvider>
+      <App className="flex flex-col min-h-screen w-full bg-gray-50 text-gray-800" />
+    </AuthProvider>
+  </React.StrictMode>
 );
