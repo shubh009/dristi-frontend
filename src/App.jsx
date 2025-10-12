@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
@@ -6,36 +6,71 @@ import Footer from "./components/common/Footer";
 import HomePage from "./pages/HomePage";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
-import PatientDashboard from "./components/patient/PatientDashboard";
-import DoctorDashboard from "./components/doctor/DoctorDashboard";
 
-function App() {
+import PatientDashboardLayout from "./components/layouts/PatientDashboardLayout";
+import DashboardHome from "./pages/patient/DashboardHome";
+
+// import DoctorDashboardLayout from "./layouts/DoctorDashboardLayout"; // (to be created similar to patient)
+// import DoctorDashboardHome from "./pages/doctor/DoctorDashboardHome"; // (doctor main dashboard page)
+
+function AppContent() {
   const { user } = useAuth();
+  const location = useLocation();
+
+  // Detect if we are inside a dashboard route
+  const isDashboardRoute =
+    location.pathname.startsWith("/patient") ||
+    location.pathname.startsWith("/doctor");
 
   return (
-    <BrowserRouter>
-      <div className="flex flex-col min-h-screen w-full bg-gray-50 text-gray-800">
-        {/* Navbar */}
-        <Navbar role={user?.role} />
+    <div className="flex flex-col min-h-screen w-full bg-gray-50 text-gray-800 overflow-x-hidden">
+      {/* Show global navbar/footer only on public routes */}
+      {!isDashboardRoute && <Navbar role={user?.role} />}
 
-        {/* Main content */}
-        <main className="flex-grow flex justify-center items-start w-full bg-gray-50">
-          <div className="w-full max-w-screen-xl mx-auto ">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/patient/dashboard" element={<PatientDashboard />} />
-              <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
-            </Routes>
-          </div>
-        </main>
+      <main>
+        <div className="w-full">
+          <Routes>
+            {/* PUBLIC ROUTES */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
-        {/* Footer */}
-        <Footer />
-      </div>
-    </BrowserRouter>
+            {/* PATIENT DASHBOARD ROUTES */}
+            <Route
+              path="/patient/*"
+              element={
+                <PatientDashboardLayout>
+                  <Routes>
+                    <Route path="dashboard" element={<DashboardHome />} />
+                  </Routes>
+                </PatientDashboardLayout>
+              }
+            />
+
+            {/* DOCTOR DASHBOARD ROUTES */}
+            {/* <Route
+              path="/doctor/*"
+              element={
+                <DoctorDashboardLayout>
+                  <Routes>
+                    <Route path="dashboard" element={<DoctorDashboardHome />} />
+                  </Routes>
+                </DoctorDashboardLayout>
+              }
+            /> */}
+          </Routes>
+        </div>
+      </main>
+
+      {!isDashboardRoute && <Footer />}
+    </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}

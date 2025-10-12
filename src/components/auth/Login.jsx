@@ -77,7 +77,7 @@ export default function Login() {
 
       <div className="flex flex-col md:flex-row w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden ">
         {/* Left side image */}
-        <div className="md:w-1/2 bg-[url('https://drishti-eye-care.vercel.app/Images/eye-checkup.jpeg')] bg-cover bg-center rounded-l-2xl shadow-2xl relative flex flex-col justify-center text-white">
+        <div className="md:w-1/2 bg-[url('https://optrica.themetechmount.net/wp-content/uploads/2020/12/col-bg-01.jpg')] bg-cover bg-center rounded-l-2xl shadow-2xl relative flex flex-col justify-center text-white">
           <div className="absolute inset-0 bg-teal-900/60 rounded-l-2xl" />
           <div className="relative z-10 text-center px-6">
             <h2 className="text-4xl font-bold mb-3">Dristi Eye Care</h2>
