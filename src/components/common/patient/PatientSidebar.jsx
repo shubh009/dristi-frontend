@@ -13,11 +13,15 @@ export default function PatientSidebar({ isOpen }) {
 
   const menuItems = [
     { label: "Dashboard", icon: <FiHome />, path: "/patient/dashboard" },
-    { label: "Book Appointment", icon: <FiCalendar />, path: "/patient/book" },
+    {
+      label: "Book Appointment",
+      icon: <FiCalendar />,
+      path: "/patient/book-appointment",
+    },
     {
       label: "My Appointments",
       icon: <FiFileText />,
-      path: "/patient/appointments",
+      path: "/patient/my-appointment",
     },
     { label: "Reports", icon: <RiFileList2Line />, path: "/patient/profile" },
     { label: "Messages", icon: <RiMessage3Line />, path: "/patient/profile" },

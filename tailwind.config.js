@@ -13,7 +13,10 @@ export default {
         },
         secondary: {
           DEFAULT: "#ffde59", // Yellow for contrast
-        },
+        },     
+      },
+      backgroundImage: {
+        'primary-gradient': "linear-gradient(to bottom, #fde1cc, #edddab)",
       },
     },
   },

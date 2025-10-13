@@ -9,6 +9,9 @@ import Signup from "./components/auth/Signup";
 
 import PatientDashboardLayout from "./components/layouts/PatientDashboardLayout";
 import DashboardHome from "./pages/patient/DashboardHome";
+import BookAppointment from "./pages/patient/BookAppointment";
+import MyAppointments from "./pages/patient/MyAppointments";
+import PatientProfile from "./pages/patient/PatientProfile";
 
 // import DoctorDashboardLayout from "./layouts/DoctorDashboardLayout"; // (to be created similar to patient)
 // import DoctorDashboardHome from "./pages/doctor/DoctorDashboardHome"; // (doctor main dashboard page)
@@ -42,6 +45,15 @@ function AppContent() {
                 <PatientDashboardLayout>
                   <Routes>
                     <Route path="dashboard" element={<DashboardHome />} />
+                    <Route
+                      path="/book-appointment"
+                      element={<BookAppointment />}
+                    />
+                    <Route
+                      path="/my-appointment"
+                      element={<MyAppointments />}
+                    />
+                    <Route path="/profile" element={<PatientProfile />} />
                   </Routes>
                 </PatientDashboardLayout>
               }
