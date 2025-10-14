@@ -173,7 +173,7 @@ const AppointmentList = () => {
                   </p>
                 </div>
                 <div className="space-y-2 text-gray-600 ">
-                  <button className="bg-primary-gradient text-black shadow-lg w-100 px-10 py-2 rounded-full hover:bg-orange-600 transition font-bold  mt-4 text-[18px]">
+                  <button className="bg-primary-gradient text-black shadow-lg w-100 px-8 py-2 rounded-full hover:bg-orange-600 transition font-bold  mt-4 md:text-[18px] text-[15px]">
                     Get Hospital Directions
                   </button>
                 </div>

@@ -72,7 +72,7 @@ const PatientProfile = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen animate-fadeIn">
+    <div className="p-6  min-h-screen animate-fadeIn">
       <ToastContainer />
       <h2 className="text-2xl font-bold mb-6">Patient Profile</h2>
 
@@ -330,7 +330,7 @@ const PatientProfile = () => {
           <div className="mt-6 flex items-center gap-4">
             <button
               onClick={handleSave}
-              className="relative bg-[#af3233eb] text-white px-6 py-2 rounded-md hover:bg-red-700 transition"
+              className="relative bg-primary-gradient text-black px-6 py-2 rounded-md hover:bg-red-700 transition font-bold  md:text-[18px] text-[17px] flex items-center gap-2"
             >
               {saving ? (
                 <span className="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
@@ -339,7 +339,7 @@ const PatientProfile = () => {
                   &#10003;
                 </span>
               ) : (
-                "Save Changes"
+                "Save Info"
               )}
             </button>
             <button
