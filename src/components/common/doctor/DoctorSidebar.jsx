@@ -1,5 +1,6 @@
 // src/components/doctor/DoctorSidebar.jsx
-import SidebarBase from "../common/navigation/SidebarBase";
+import SidebarBase from "../nvaigation/SidebarBase";
+import { useNavigate } from "react-router-dom";
 import {
   FaHome,
   FaUserInjured,
@@ -8,14 +9,45 @@ import {
   FaChartLine,
 } from "react-icons/fa";
 
-const doctorMenu = [
-  { name: "Dashboard", path: "/doctor/dashboard", icon: FaHome },
-  { name: "Patients", path: "/doctor/patients", icon: FaUserInjured },
-  { name: "Appointments", path: "/doctor/appointments", icon: FaCalendarAlt },
-  { name: "Reports", path: "/doctor/reports", icon: FaClipboardList },
-  { name: "Analytics", path: "/doctor/analytics", icon: FaChartLine },
-];
+import {
+  Ri24HoursLine,
+  RiCalendar2Line,
+  RiFileList2Line,
+  RiMessage2Line,
+  RiMessage3Line,
+} from "react-icons/ri";
+import { TbMessage2Plus, TbReceipt } from "react-icons/tb";
+import { RxLapTimer } from "react-icons/rx";
 
-export default function DoctorSidebar() {
-  return <SidebarBase title="Doctor Panel" menuItems={doctorMenu} />;
+export default function DoctorSidebar({ isOpen }) {
+  const navigate = useNavigate();
+
+  const menuItems = [
+    { label: "Dashboard", icon: <FaHome />, path: "/doctor/dashboard" },
+    {
+      label: "Patients List",
+      icon: <RiFileList2Line />,
+      path: "/doctor/patients",
+    },
+    {
+      label: "All Appointments",
+      icon: <RiCalendar2Line />,
+      path: "/doctor/appointments",
+    },
+    {
+      label: "Schedule OPD",
+      icon: <RxLapTimer />,
+      path: "/doctor/appointments",
+    },
+    { label: "Reports", icon: <TbReceipt />, path: "/doctor/reports" },
+    { label: "Messages", icon: <TbMessage2Plus />, path: "/doctor/message" },
+  ];
+
+  return (
+    <SidebarBase
+      isOpen={isOpen}
+      menuItems={menuItems}
+      onSelect={(path) => navigate(path)}
+    />
+  ); //<SidebarBase title="Doctor Panel" menuItems={doctorMenu} />;
 }

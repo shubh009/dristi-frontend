@@ -13,8 +13,9 @@ import BookAppointment from "./pages/patient/BookAppointment";
 import MyAppointments from "./pages/patient/MyAppointments";
 import PatientProfile from "./pages/patient/PatientProfile";
 
-// import DoctorDashboardLayout from "./layouts/DoctorDashboardLayout"; // (to be created similar to patient)
-// import DoctorDashboardHome from "./pages/doctor/DoctorDashboardHome"; // (doctor main dashboard page)
+import DoctorDashboardLayout from "./components/layouts/DoctorDashboardLayout"; // (to be created similar to patient)
+import DoctorDashboardHome from "./pages/doctor/DoctorDashboard"; // (doctor main dashboard page)
+import DoctorPatients from "./pages/doctor/DoctorPatients";
 
 function AppContent() {
   const { user } = useAuth();
@@ -60,16 +61,19 @@ function AppContent() {
             />
 
             {/* DOCTOR DASHBOARD ROUTES */}
-            {/* <Route
+            <Route
               path="/doctor/*"
               element={
                 <DoctorDashboardLayout>
                   <Routes>
                     <Route path="dashboard" element={<DoctorDashboardHome />} />
                   </Routes>
+                  <Routes>
+                    <Route path="patient-list" element={<DoctorPatients />} />
+                  </Routes>
                 </DoctorDashboardLayout>
               }
-            /> */}
+            />
           </Routes>
         </div>
       </main>
