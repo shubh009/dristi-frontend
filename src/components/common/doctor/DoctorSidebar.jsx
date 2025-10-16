@@ -27,7 +27,7 @@ export default function DoctorSidebar({ isOpen }) {
     {
       label: "Patients List",
       icon: <RiFileList2Line />,
-      path: "/doctor/patients",
+      path: "/doctor/patient-list",
     },
     {
       label: "All Appointments",

@@ -1,43 +1,86 @@
 import { useState } from "react";
 import CreateAppointmentDrawer from "../../components/common/forms/CreateAppointmentDrawer";
 import { FaPlus } from "react-icons/fa";
+import { PiPlusCircleLight } from "react-icons/pi";
+import ResponsiveDataTable from "../../components/common/ui-components/tables/ResponsiveDataTable";
 
 export default function DoctorPatients() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Dummy patients data
-  const patients = [
+  const columns = [
+    { key: "name", label: "Name" },
+    { key: "email", label: "Email" },
+    { key: "phone", label: "Phone" },
+    { key: "city", label: "City" },
+    { key: "type", label: "Type" },
+    { key: "date", label: "Date" },
+    { key: "time", label: "Time" },
+  ];
+
+  const data = [
     {
-      id: 1,
-      name: "Rahul Sharma",
-      email: "rahul@example.com",
-      phone: "+91 9876543210",
+      name: "John Doe",
+      email: "john@example.com",
+      phone: "9876543210",
       city: "Agra",
       type: "First Visit",
       date: "2025-10-15",
       time: "10:30 AM",
     },
     {
-      id: 2,
-      name: "Priya Singh",
-      email: "priya@example.com",
-      phone: "+91 9123456780",
+      name: "Jane Smith",
+      email: "jane@example.com",
+      phone: "8765432109",
       city: "Delhi",
-      type: "Follow-up",
-      date: "2025-10-16",
-      time: "11:00 AM",
+      type: "First Visit",
+      date: "2025-10-15",
+      time: "10:30 AM",
     },
     {
-      id: 3,
-      name: "Vikram Mehta",
-      email: "vikram@example.com",
-      phone: "+91 9012345678",
-      city: "Mathura",
-      type: "Emergency",
-      date: "2025-10-17",
-      time: "12:45 PM",
+      name: "Ravi Kumar",
+      email: "ravi@demo.com",
+      phone: "9999999999",
+      city: "Lucknow",
+      type: "Followup Visit",
+      date: "2025-10-15",
+      time: "10:30 AM",
     },
+    // more rows...
   ];
+
+  // const data = [
+  //   {
+  //     name: "John Doe",
+  //     email: "john@example.com",
+  //     phone: "9876543210",
+  //     city: "Agra",
+  //     type: "First Visit",
+  //     date: "2025-10-15",
+  //     time: "10:30 AM",
+  //   },
+  //   {
+  //     name: "Jane Smith",
+  //     email: "jane@example.com",
+  //     phone: "8765432109",
+  //     city: "Delhi",
+  //     type: "First Visit",
+  //     date: "2025-10-15",
+  //     time: "10:30 AM",
+  //   },
+  //   {
+  //     name: "Ravi Kumar",
+  //     email: "ravi@demo.com",
+  //     phone: "9999999999",
+  //     city: "Lucknow",
+  //     type: "First Visit",
+  //     date: "2025-10-15",
+  //     time: "10:30 AM",
+  //   },
+  //   // more rows...
+  // ];
+
+  const handleEdit = (row) => console.log("Edit:", row);
+  const handleDelete = (row) => console.log("Delete:", row);
 
   return (
     <div className="p-6 relative min-h-screen bg-gray-50">
@@ -48,17 +91,17 @@ export default function DoctorPatients() {
         {/* Desktop Button */}
         <button
           onClick={() => setDrawerOpen(true)}
-          className="hidden sm:flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md shadow-md hover:brightness-110 transition"
+          className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full shadow-md hover:brightness-110 transition border border-orange-500"
         >
-          <FaPlus className="text-sm" />
+          <PiPlusCircleLight className="text-[18px]" />
           Add New Appointment
         </button>
       </div>
 
       {/* Patients Table */}
       <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-        <table className="min-w-full text-sm border-collapse border border-gray-300">
-          <thead className="bg-secondary text-black text-[18px] font-semibold">
+        {/* <table className="min-w-full text-sm border-collapse border border-gray-300">
+          <thead className="bg-orange-100 text-black text-[18px] font-semibold">
             <tr>
               <th className="text-left py-3 px-4 border border-gray-600">
                 Name
@@ -98,7 +141,25 @@ export default function DoctorPatients() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
+
+        <ResponsiveDataTable
+          title="View All Patients"
+          columns={columns}
+          data={data}
+          searchableKeys={[
+            "name",
+            "email",
+            "phone",
+            "city",
+            "type",
+            "date",
+            "time",
+          ]}
+          pageSize={5}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       </div>
 
       {/* Mobile Floating Button */}

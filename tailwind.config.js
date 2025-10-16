@@ -10,6 +10,7 @@ export default {
         primary: {
           DEFAULT: "#af3233eb", // Firebrick tone — main Dristi color
           blue: "#4babce",  //skyblue tone from logo
+          light:"#ffedd5", //light orange
         },
         secondary: {
           DEFAULT: "#ffde59", // Yellow for contrast

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiCloseCircleLine, RiClosedCaptioningLine } from "react-icons/ri";
+import { PiPlusCircleLight } from "react-icons/pi";
 
 export default function CreateAppointmentDrawer({ isOpen, onClose, onSave }) {
   const [formData, setFormData] = useState({
@@ -240,19 +241,21 @@ export default function CreateAppointmentDrawer({ isOpen, onClose, onSave }) {
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
+                className="px-4 py-2 rounded-full font-semibold border border-gray-300 text-gray-700 hover:bg-gray-100 transition flex items-center gap-1"
               >
+                <RiCloseCircleLine />
                 Cancel
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={isSaving}
-                className={`px-5 py-2 rounded-md text-white font-semibold transition ${
+                className={`px-5 py-2 rounded-full font-semibold transition flex items-center gap-1 ${
                   isSaving
-                    ? "bg-primary/60 cursor-not-allowed"
-                    : "bg-primary hover:brightness-95"
+                    ? "bg-primary-light/60 cursor-not-allowed"
+                    : "bg-orange-200 text-black hover:brightness-95 shadow-md"
                 }`}
               >
+                <PiPlusCircleLight className="font-semibold" />
                 {isSaving ? "Saving..." : "Save Appointment"}
               </button>
             </div>
