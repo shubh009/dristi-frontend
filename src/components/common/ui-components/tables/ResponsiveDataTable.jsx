@@ -1,13 +1,19 @@
+// src/components/common/ResponsiveDataTable.jsx
 import { useState, useMemo } from "react";
-import { FaListAlt } from "react-icons/fa";
-import { FiEdit, FiTrash2, FiEye } from "react-icons/fi";
-import { RiFileList2Line, RiFileListLine } from "react-icons/ri";
+import {
+  FiEdit,
+  FiTrash2,
+  FiEye,
+  FiChevronUp,
+  FiChevronDown,
+} from "react-icons/fi";
 
 export default function ResponsiveDataTable({
   title = "Data Table",
   columns = [],
   data = [],
   searchableKeys = [],
+  sortableKeys = [],
   pageSize = 10,
   loading = false,
   emptyText = "No records found.",
@@ -18,6 +24,22 @@ export default function ResponsiveDataTable({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+
+  // ----- Sorting Handler -----
+  const handleSort = (key) => {
+    if (!sortableKeys.includes(key)) return; // skip if column is not sortable
+
+    setSortConfig((prev) => {
+      if (prev.key === key && prev.direction === "asc") {
+        return { key, direction: "desc" };
+      } else if (prev.key === key && prev.direction === "desc") {
+        return { key: null, direction: "asc" }; // reset sorting
+      } else {
+        return { key, direction: "asc" };
+      }
+    });
+  };
 
   // ----- Search Filtering -----
   const filteredData = useMemo(() => {
@@ -31,9 +53,29 @@ export default function ResponsiveDataTable({
     );
   }, [data, searchTerm, searchableKeys]);
 
+  // ----- Sorting -----
+  const sortedData = useMemo(() => {
+    if (!sortConfig.key) return filteredData;
+
+    const sorted = [...filteredData].sort((a, b) => {
+      const aVal = a[sortConfig.key] ?? "";
+      const bVal = b[sortConfig.key] ?? "";
+
+      if (typeof aVal === "number" && typeof bVal === "number") {
+        return sortConfig.direction === "asc" ? aVal - bVal : bVal - aVal;
+      }
+
+      return sortConfig.direction === "asc"
+        ? String(aVal).localeCompare(String(bVal))
+        : String(bVal).localeCompare(String(aVal));
+    });
+
+    return sorted;
+  }, [filteredData, sortConfig]);
+
   // ----- Pagination -----
-  const totalPages = Math.ceil(filteredData.length / pageSize) || 1;
-  const paginatedData = filteredData.slice(
+  const totalPages = Math.ceil(sortedData.length / pageSize) || 1;
+  const paginatedData = sortedData.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
@@ -55,9 +97,7 @@ export default function ResponsiveDataTable({
     <div className="bg-white shadow-md rounded-lg p-6 w-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
-        <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-          <RiFileList2Line /> {title}
-        </h2>
+        <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
 
         {showSearch && (
           <input
@@ -84,18 +124,41 @@ export default function ResponsiveDataTable({
       {!loading && paginatedData.length > 0 && (
         <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full border border-gray-200 ">
-            <thead className="bg-primary-gradient text-black">
+            <thead className="bg-gray-100">
               <tr>
-                {columns.map((col) => (
-                  <th
-                    key={col.key}
-                    className="px-4 py-2 text-left text-md font-semibold text-black border-r"
-                  >
-                    {col.label}
-                  </th>
-                ))}
+                {columns.map((col) => {
+                  const isSortable = sortableKeys.includes(col.key);
+                  const isSorted = sortConfig.key === col.key;
+
+                  return (
+                    <th
+                      key={col.key}
+                      onClick={() => handleSort(col.key)}
+                      className={`px-4 py-2 text-left text-sm font-semibold text-gray-600 border-r ${
+                        isSortable ? "cursor-pointer select-none" : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-1">
+                        {col.label}
+                        {isSortable && (
+                          <>
+                            {isSorted && sortConfig.direction === "asc" && (
+                              <FiChevronUp className="text-gray-500" />
+                            )}
+                            {isSorted && sortConfig.direction === "desc" && (
+                              <FiChevronDown className="text-gray-500" />
+                            )}
+                            {!isSorted && (
+                              <span className="text-gray-400 text-xs">↕</span>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </th>
+                  );
+                })}
                 {(onEdit || onDelete || onView) && (
-                  <th className="px-4 py-2 text-right text-md font-semibold text-gray-600">
+                  <th className="px-4 py-2 text-right text-sm font-semibold text-gray-600">
                     Actions
                   </th>
                 )}
@@ -110,7 +173,7 @@ export default function ResponsiveDataTable({
                   {columns.map((col) => (
                     <td
                       key={col.key}
-                      className="px-4 py-2 text-md text-gray-700 border-r"
+                      className="px-4 py-2 text-sm text-gray-700 border-r"
                     >
                       {row[col.key]}
                     </td>

@@ -147,15 +147,8 @@ export default function DoctorPatients() {
           title="View All Patients"
           columns={columns}
           data={data}
-          searchableKeys={[
-            "name",
-            "email",
-            "phone",
-            "city",
-            "type",
-            "date",
-            "time",
-          ]}
+          searchableKeys={["name", "email", "phone", "city", "type", "date"]}
+          sortableKeys={["name", "date"]}
           pageSize={5}
           onEdit={handleEdit}
           onDelete={handleDelete}
