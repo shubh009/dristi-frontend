@@ -37,7 +37,7 @@ export default function DoctorSidebar({ isOpen }) {
     {
       label: "Schedule OPD",
       icon: <RxLapTimer />,
-      path: "/doctor/appointments",
+      path: "/doctor/schedule-opd",
     },
     { label: "Reports", icon: <TbReceipt />, path: "/doctor/reports" },
     { label: "Messages", icon: <TbMessage2Plus />, path: "/doctor/message" },

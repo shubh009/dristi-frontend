@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthContext";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
@@ -16,6 +17,7 @@ import PatientProfile from "./pages/patient/PatientProfile";
 import DoctorDashboardLayout from "./components/layouts/DoctorDashboardLayout"; // (to be created similar to patient)
 import DoctorDashboardHome from "./pages/doctor/DoctorDashboard"; // (doctor main dashboard page)
 import DoctorPatients from "./pages/doctor/DoctorPatients";
+import SchedulePage from "./pages/doctor/SchedulePage";
 
 function AppContent() {
   const { user } = useAuth();
@@ -71,10 +73,14 @@ function AppContent() {
                   <Routes>
                     <Route path="patient-list" element={<DoctorPatients />} />
                   </Routes>
+                  <Routes>
+                    <Route path="schedule-opd" element={<SchedulePage />} />
+                  </Routes>
                 </DoctorDashboardLayout>
               }
             />
           </Routes>
+          <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
         </div>
       </main>
 
