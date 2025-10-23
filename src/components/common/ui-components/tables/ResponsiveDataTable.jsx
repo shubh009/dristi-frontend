@@ -1,4 +1,22 @@
-// src/components/common/ResponsiveDataTable.jsx
+/*
+ *****************************************************************
+ ***********************************************************
+ * Controlled-ish table component with:
+ * - search by key(s)
+ * - pagination
+ * - responsive: table on large screens, card list on small screens
+ *
+ * Props:
+ * - columns: [{ key, label, render?: (row) => jsx, sortable?: boolean }]
+ * - data: array
+ * - pageSizeOptions: [10,25,50]
+ * - initialPageSize
+ * - onRowAction(row, action)
+ * - searchKeys: ['patientName','phone']
+ **********************************************************
+ ******************************************************************
+ */
+
 import { useState, useMemo } from "react";
 import {
   FiEdit,

@@ -18,6 +18,7 @@ import {
 } from "react-icons/ri";
 import { TbMessage2Plus, TbReceipt } from "react-icons/tb";
 import { RxLapTimer } from "react-icons/rx";
+import { PiPrescriptionDuotone } from "react-icons/pi";
 
 export default function DoctorSidebar({ isOpen }) {
   const navigate = useNavigate();
@@ -32,15 +33,20 @@ export default function DoctorSidebar({ isOpen }) {
     {
       label: "All Appointments",
       icon: <RiCalendar2Line />,
-      path: "/doctor/appointments",
+      path: "/doctor/appoitment-list",
+    },
+    {
+      label: "Prescription List",
+      icon: <PiPrescriptionDuotone />,
+      path: "/doctor/prescription-list",
     },
     {
       label: "Schedule OPD",
       icon: <RxLapTimer />,
       path: "/doctor/schedule-opd",
     },
-    { label: "Reports", icon: <TbReceipt />, path: "/doctor/reports" },
-    { label: "Messages", icon: <TbMessage2Plus />, path: "/doctor/message" },
+    { label: "Reports", icon: <TbReceipt />, path: "#" },
+    { label: "Messages", icon: <TbMessage2Plus />, path: "#" },
   ];
 
   return (

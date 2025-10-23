@@ -18,6 +18,10 @@ import DoctorDashboardLayout from "./components/layouts/DoctorDashboardLayout"; 
 import DoctorDashboardHome from "./pages/doctor/DoctorDashboard"; // (doctor main dashboard page)
 import DoctorPatients from "./pages/doctor/DoctorPatients";
 import SchedulePage from "./pages/doctor/SchedulePage";
+import AppointmentListPage from "./pages/doctor/AppointmentListPage";
+import PrescriptionForm from "./components/common/prescription/PrescriptionForm";
+import PrescriptionList from "./components/common/prescription/PrescriptionList";
+import prescriptionView from "./components/common/prescription/PrescriptionView";
 
 function AppContent() {
   const { user } = useAuth();
@@ -74,7 +78,31 @@ function AppContent() {
                     <Route path="patient-list" element={<DoctorPatients />} />
                   </Routes>
                   <Routes>
+                    <Route
+                      path="appoitment-list"
+                      element={<AppointmentListPage />}
+                    />
+                  </Routes>
+                  <Routes>
                     <Route path="schedule-opd" element={<SchedulePage />} />
+                  </Routes>
+                  <Routes>
+                    <Route
+                      path="write-prescription"
+                      element={<PrescriptionForm />}
+                    />
+                  </Routes>
+                  <Routes>
+                    <Route
+                      path="prescription-list"
+                      element={<PrescriptionList />}
+                    />
+                  </Routes>
+                  <Routes>
+                    <Route
+                      path="/prescriptions/:id/view"
+                      element={<PrescriptionList />}
+                    />
                   </Routes>
                 </DoctorDashboardLayout>
               }

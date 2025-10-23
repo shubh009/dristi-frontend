@@ -1,0 +1,30 @@
+/* Custom tweaks if needed with Tailwind */
+@media print {
+  body {
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+  }
+  .print\\:hidden {
+    display: none !important;
+  }
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+}
