@@ -66,7 +66,7 @@ export default function Login() {
 
       setTimeout(() => {
         setShowSuccess(false);
-        navigate("/patient/dashboard");
+        navigate("/doctor/dashboard");
       }, 2000);
     }, 2000);
   };
